@@ -7,7 +7,7 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem
 
         public ISensor Sensor { get; }
 
-        bool _alarmOn = false;
+        public bool AlarmOn { get; private set; }
         public long AlarmCount { get; private set; }
 
         public Alarm(ISensor sensor)
@@ -21,14 +21,9 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem
 
             if (psiPressureValue < LowPressureThreshold || HighPressureThreshold < psiPressureValue)
             {
-                _alarmOn = true;
+                this.AlarmOn = true;
                 this.AlarmCount += 1;
             }
-        }
-
-        public bool AlarmOn
-        {
-            get { return _alarmOn; }
         }
     }
 }
