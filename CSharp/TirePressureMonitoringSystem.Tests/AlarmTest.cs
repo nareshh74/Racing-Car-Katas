@@ -33,19 +33,22 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem
             sensorMock.Verify(x => x.PopNextPressurePsiValue(), Times.Once);
         }
 
-        [Fact]
-        public void Set_alarm_on_when_pressure_below_low_threshold()
+        [Theory]
+        [InlineData(Alarm.LowPressureThreshold - 1, true)]
+        [InlineData(Alarm.LowPressureThreshold, false)]
+        [InlineData(Alarm.HighPressureThreshold + 1, true)]
+        public void Set_alarm_as_expected(int value, bool expected)
         {
             // Arrange
             var sensorMock = new Mock<ISensor>();
-            sensorMock.Setup(x => x.PopNextPressurePsiValue()).Returns(Alarm.LowPressureThreshold - 1);
+            sensorMock.Setup(x => x.PopNextPressurePsiValue()).Returns(value);
             Alarm alarm = new(sensorMock.Object);
 
             // Act
             alarm.Check();
 
             // Assert
-            Assert.True(alarm.AlarmOn);
+            Assert.Equal(expected, alarm.AlarmOn);
         }
     }
 }
