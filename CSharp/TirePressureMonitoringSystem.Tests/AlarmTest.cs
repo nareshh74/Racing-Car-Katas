@@ -4,11 +4,15 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem
 {
     public class AlarmTest
     {
-        [Fact]
-        public void Foo()
+        public class CtorShould
         {
-            Alarm alarm = new Alarm();
-            Assert.False(alarm.AlarmOn);
+            [Fact]
+            public void Set_sensor()
+            {
+                ISensor sensor = new Sensor();
+                Alarm alarm = new(sensor);
+                Assert.Same(sensor, alarm.Sensor);
+            }
         }
     }
 }

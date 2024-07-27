@@ -5,15 +5,19 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem
         private const double LowPressureThreshold = 17;
         private const double HighPressureThreshold = 21;
 
-        Sensor _sensor = new Sensor();
+        public ISensor Sensor { get; }
 
         bool _alarmOn = false;
         private long _alarmCount = 0;
 
+        public Alarm(ISensor sensor)
+        {
+            this.Sensor = sensor;
+        }
 
         public void Check()
         {
-            double psiPressureValue = _sensor.PopNextPressurePsiValue();
+            double psiPressureValue = this.Sensor.PopNextPressurePsiValue();
 
             if (psiPressureValue < LowPressureThreshold || HighPressureThreshold < psiPressureValue)
             {
