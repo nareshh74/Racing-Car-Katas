@@ -1,0 +1,2 @@
+ - start writing tests in the order in which client uses the APIs. Usually, that would be public ctors and then public methods.
+ - for existing code, within a method test, write tests in order of the code flow.
