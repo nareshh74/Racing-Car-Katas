@@ -19,11 +19,14 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem
         {
             double psiPressureValue = this.Sensor.PopNextPressurePsiValue();
 
-            if (psiPressureValue < LowPressureThreshold || HighPressureThreshold < psiPressureValue)
+            if (psiPressureValue is >= Alarm.LowPressureThreshold
+                and <= Alarm.HighPressureThreshold)
             {
-                this.On = true;
-                this.Count += 1;
+                return;
             }
+
+            this.On = true;
+            this.Count += 1;
         }
     }
 }
