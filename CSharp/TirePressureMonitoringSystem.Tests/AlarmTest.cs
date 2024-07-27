@@ -47,7 +47,7 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem
                 alarm.Check();
 
                 // Assert
-                Assert.Equal(expected, alarm.AlarmOn);
+                Assert.Equal(expected, alarm.On);
             }
 
             [Fact]
@@ -62,7 +62,7 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem
                 alarm.Check();
 
                 // Assert
-                Assert.Equal(1, alarm.AlarmCount);
+                Assert.Equal(1, alarm.Count);
             }
         }
 
@@ -83,7 +83,7 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem
                 alarm.Check();
 
                 // Assert
-                Assert.Equal(expected, alarm.AlarmOn);
+                Assert.Equal(expected, alarm.On);
             }
         }
     }
